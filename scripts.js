@@ -1,20 +1,36 @@
-const gridSize = 16;
+
+let slider = document.getElementById("slider");
+let gridSize = slider.value;
+slider.addEventListener('input', function() {setGridSize(slider.value)});
+console.log(slider.value);
 
 
-
-function setGridSize () {
+function setGridSize (gridSize) {
     const grid = document.getElementById("gameArea");
-    grid.style.gridTemplateColumns = "repeat(gridSize, 1fr)";
-    grid.style.gridTemplateRows = "repeat(gridSize, 1fr)";
+    grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+    gridSquares(gridSize);
 }
 
-function gridSquares () {
+function gridSquares (gridSize) {
     let size = gridSize * gridSize;
-    for (let i = 0; i < size; i++) {
-        const divOne = document.createElement("div");
-        divOne.className = "box";
-        document.getElementById("gameArea").appendChild(divOne);
+    let currentDivs = document.getElementsByClassName("box").length;
+    const parentDiv = document.getElementById("gameArea");
+
+    if ( size > currentDivs) {
+        for (let i = currentDivs; i < size; i++) {
+            const divOne = document.createElement("div");
+            divOne.className = "box";
+            document.getElementById("gameArea").appendChild(divOne);
+        }
     }
+    else if (size < currentDivs) {
+        for (let i = size; i < currentDivs; i++) {
+            parentDiv.removeChild(parentDiv.lastElementChild);
+        }
+    }
+    else {}
+   
 }
 
 function colorGray () {
@@ -28,10 +44,11 @@ function colorGray () {
 }
 
 
-function main () {
+/*function main () {
+    
     setGridSize();
     gridSquares();
     colorGray();
-}
+}*/
 
-window.addEventListener("load", main);
+//window.addEventListener("load", main);
