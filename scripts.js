@@ -1,14 +1,12 @@
-
-let slider = document.getElementById("slider");
+const slider = document.getElementById("slider");
 let gridSize = slider.value;
 slider.addEventListener('input', function() {setGridSize(slider.value)});
-console.log(slider.value);
+
 
 
 function setGridSize (gridSize) {
     const grid = document.getElementById("gameArea");
-    grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-    grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+    grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`; //rows are set to auto
     gridSquares(gridSize);
 }
 
@@ -29,8 +27,7 @@ function gridSquares (gridSize) {
             parentDiv.removeChild(parentDiv.lastElementChild);
         }
     }
-    else {}
-   
+      
 }
 
 function colorGray () {
@@ -44,11 +41,4 @@ function colorGray () {
 }
 
 
-/*function main () {
-    
-    setGridSize();
-    gridSquares();
-    colorGray();
-}*/
-
-//window.addEventListener("load", main);
+window.addEventListener("load", setGridSize(gridSize));

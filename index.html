@@ -9,21 +9,23 @@
     <title>Etch-A-Sketch</title>
 </head>
 <body>
-    <div class="header">
-        Etch-A-Sketch
-    </div>
-    <div></div>
     
-    <div class="main" id="gameArea">
-        
-    </div>
-   
-    <div class="controls">
-        <div class="slider">
-            <input type="range" min="8" max="64" value="32" step="8" class="slider" id="slider">
+    <div class="outer">
+        <div class="header">
+            Pix-A-Sketch
         </div>
-        <button class="btn" id="reset" onClick="window.location.reload()">Reset</button>
+        <div class="leftControls">
+            <button class="btn" id="classic">Classic</button>
+        </div>
+        <div class="main" id="gameArea"></div>
+        <div class="rightControls">
+            <button class="btn" id="reset" onClick="window.location.reload()">Reset</button>
+        </div>
+        <div class="sliderContainer">
+            <input type="range" autocomplete="off" min="8" max="64" value="32" step="8" class="slider" id="slider">
+        </div>
     </div>
+
     
 </body>
 </html>
