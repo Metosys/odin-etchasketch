@@ -10,6 +10,7 @@ function setGridSize (gridSize) {
     clearGrid();
 }
 
+//create boxes within grid
 function gridSquares (gridSize) {
     let size = gridSize * gridSize;
     let currentDivs = document.getElementsByClassName("box").length;
@@ -27,8 +28,7 @@ function gridSquares (gridSize) {
         for (let i = size; i < currentDivs; i++) {
             parentDiv.removeChild(parentDiv.lastElementChild);
         }
-    }
-      
+    }   
 }
 
 function clearGrid () {
@@ -37,6 +37,7 @@ function clearGrid () {
     listBox.forEach(element => {
         element.removeEventListener('mouseover', penGray);
         element.removeEventListener('mouseover', penRainbow);
+        element.removeEventListener('mouseover', penDarken);
         element.classList.remove("grayBG");
             
     });
@@ -80,12 +81,24 @@ function colorDarken () {
     })
 }
 
+//replace with classes that contain progressively darker bg color
+//possibly worst way to implement this
 function penDarken (e) {
     let element = e.target;
-    let i = 190;
-    element.style.backgroundColor = `rgb(${i},${i},${i})`;
-    i -= 10;
+    if (element.classList.contains('darken0')) {
+        element.classList.replace('darken0', 'darken1');
+    }
+    else if (element.classList.contains('darken1')) {
+        element.classList.replace('darken1','darken2');
+    }
+    else if (element.classList.contains('darken2')) {
+        element.classList.replace('darken2','darken3');
+    }
+    else {
+        element.classList.add('darken0');
+    }
 }
+
 
 function randomColor () {
     let r = Math.floor(Math.random()*255);
